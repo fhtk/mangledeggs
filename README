@@ -1,0 +1,22 @@
+*****
+
+mangledeggs
+A symbol mangling regime for the Fanhacker’s Toolkit
+
+Copyright © 2020 Alexander Nicholi
+Released under BSD-2-Clause.
+
+*****
+
+In my experience dealing with the compilation of a wide variety of assets
+for games on the Nintendo Game Boy Advance, I have found it exceedingly
+helpful to have a predictable naming scheme for the symbols pointing to the
+compiled assets while programming.
+
+In the same spirit of dualistic documentation provided in Aquefir’s slick
+repository, mangledeggs attempts to provide a symbol mangling scheme that
+is useful in the various proprietary formats used in asset sources, while
+still being friendly to the proclivities of identifier rules in ANSI C. In
+short, it is for both humans and machines.
+
+<more details TBW>
