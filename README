@@ -8,10 +8,14 @@ Released under BSD-2-Clause.
 
 *****
 
+1. WHY?
+
 In my experience dealing with the compilation of a wide variety of assets
 for games on the Nintendo Game Boy Advance, I have found it exceedingly
 helpful to have a predictable naming scheme for the symbols pointing to the
 compiled assets while programming.
+
+2. HOW SO?
 
 In the same spirit of dualistic documentation provided in Aquefir’s slick
 repository, mangledeggs attempts to provide a symbol mangling scheme that
@@ -19,4 +23,26 @@ is useful in the various proprietary formats used in asset sources, while
 still being friendly to the proclivities of identifier rules in ANSI C. In
 short, it is for both humans and machines.
 
-<more details TBW>
+The main focus of mangledeggs is the symbol mangling for assets and data.
+This is going to present a considerable favour towards video game development,
+but it should apply the same nonetheless for any kind of application that
+programmatically embeds its resources alongside executable code through the
+linker.
+
+When dealing with data, we have two conceptual components that need to be
+represented: a name and its grouping, and a kind or type. Let’s take an image
+stored under the name “bootscreen” in the “startup/” subfolder in data/ (per
+aquefir/slick/fsschema.txt). The name component is fully qualified as
+startup/bootscreen, locally just as bootscren, and the kind is ‘image’.
+
+This would be mangled into the symbol “egstartupBootscreen_img”. All symbols
+start with the two characters ‘eg’, which are followed by the fully qualified
+name, each part of the name separated using leading capitals (like camelCase).
+As both the name and type fields are variable length, they are separated by
+an underscore. The type is arbitrary enough that a lookup table can be
+fashioned for shorthanding, allowing us to store ‘img’ instead of ‘image’.
+
+3. REFERENCES & ADDITIONAL READING
+
+Aquefir. Slick.
+	<https://github.com/aquefir/slick>
