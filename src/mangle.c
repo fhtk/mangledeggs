@@ -7,21 +7,30 @@
 
 #include <mangledeggs.h>
 
+#include <stdlib.h>
 #include <string.h>
 
-#define RETZERO_IF(x) do{if((x)){return 0;}}while(0)
+#define RET_IF(x) do{if((x)){return;}}while(0)
 
-unsigned eg_mangle( const char** name, unsigned name_sz, const char* type,
-char* out )
+void eg_mangle( const char** name, const char* type,
+const char** out )
 {
-	size_t out_sz, type_sz, i;
+	size_t o_sz, o_cap, type_sz, i;
+	char* o;
 
-	RETZERO_IF(name == NULL || name_sz == 0 || type == NULL);
+	RET_IF(name == NULL || type == NULL || out == NULL);
 
 	/* 2 for ‘eg’, 1 for name-type separator */
-	out_sz = 3;
+	o_sz = 2;
+	o_cap = 4;
 
-	for(i = 0; i < name_sz; ++i)
+	o = malloc( sizeof(char) * 4 );
+	RET_IF( o == NULL );
+
+	o[0] = 'e';
+	o[1] = 'g';
+
+	for(i = 0; name[i] != NULL; ++i)
 	{
 		size_t item_sz;
 
@@ -32,33 +41,44 @@ char* out )
 
 		item_sz = strlen( name[i] );
 
-		if( out )
+		while( o_sz + item_sz > o_cap )
 		{
-			memcpy( out + out_sz - 1, name[i], item_sz );
+			o_cap *= 2;
 
-			/* capitalise the lowercase leading letter, if present */
-			if( i > 0 && (out[out_sz - 1] >= 0x41 || out[out_sz - 1] <= 0x7A) )
-			{
-				out[out_sz - 1] -= 0x20;
-			}
+			o = realloc( o, o_cap );
+			RET_IF( o == NULL );
 		}
 
-		out_sz += item_sz;
+		memcpy( o + o_sz, name[i], item_sz );
+
+		/* capitalise the lowercase leading letter, if present */
+		if( i > 0 && (o[o_sz] >= 0x41 || o[o_sz] <= 0x7A) )
+		{
+			o[o_sz] -= 0x20;
+		}
+
+		o_sz += item_sz;
 	}
 
 	type_sz = strlen( type );
 
-	if( out )
+	/* + 2 is for underscore and NUL byte */
+	while( o_sz + type_sz + 2 > o_cap )
 	{
-		/* apply name-type separator */
-		out[out_sz - 1] = '_';
+		o_cap *= 2;
 
-		memcpy( out + out_sz, type, type_sz );
-
-		out[out_sz + type_sz] = '\0';
+		o = realloc( o, o_cap );
+		RET_IF( o == NULL );
 	}
 
-	out_sz += type_sz + 1;
+	/* apply name-type separator */
+	o[o_sz++] = '_';
 
-	return out_sz;
+	memcpy( o + o_sz, type, type_sz );
+
+	o[o_sz + type_sz] = '\0';
+
+	o_sz += type_sz + 1;
+
+	*out = (const char*)o;
 }
