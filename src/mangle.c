@@ -52,7 +52,7 @@ const char** out )
 		memcpy( o + o_sz, name[i], item_sz );
 
 		/* capitalise the lowercase leading letter, if present */
-		if( i > 0 && (o[o_sz] >= 0x41 || o[o_sz] <= 0x7A) )
+		if( i > 0 && (o[o_sz] >= 0x61 && o[o_sz] <= 0x7A) )
 		{
 			o[o_sz] -= 0x20;
 		}
