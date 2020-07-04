@@ -57,7 +57,7 @@ void eg_demangle( const char* in, const char*** oname_, const char** otype_ )
 			/* we hit underscore. name is completely recorded */
 
 			/* flush the buffer */
-			RET_IF( oname_i >= 255 );
+			RET_IF( oname_i >= MAX_ONAME - 1 );
 			oname[oname_i] = malloc( sizeof(char) * (buf_sz + 1) );
 			RET_IF( oname[oname_i] == NULL );
 
