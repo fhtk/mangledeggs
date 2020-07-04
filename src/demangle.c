@@ -79,6 +79,7 @@ void eg_demangle( const char* in, const char*** oname_, const char** otype_ )
 			oname[oname_i][buf_sz] = '\0';
 			oname_i++;
 
+			/* reset the buffer counter for the new word */
 			buf_sz = 0;
 
 			buf[buf_sz++] = in[i] - 0x20;
