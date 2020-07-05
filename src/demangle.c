@@ -113,6 +113,6 @@ void eg_demangle(
 	onametmp[oname_i] = NULL;
 
 	/* copy over output into parameters */
-	*outname = onametmp;
-	*outtype = otype;
+	*outname = (const char**)onametmp;
+	*outtype = (const char*)otype;
 }
