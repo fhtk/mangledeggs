@@ -121,7 +121,7 @@ SO.DARWIN := dylib
 SO.LINUX  := so
 SO.WIN32  := dll
 
-CFLAGS.COMMON          := -O2 -pipe
+CFLAGS.COMMON          := -pipe
 CFLAGS.GCOMMON         := -fPIC -ansi -Wpedantic -x c -frandom-seed=69420
 CFLAGS.GCOMMON.DEBUG   := -O0 -g3 -Wall -Wpedantic
 CFLAGS.GCOMMON.RELEASE := -O2 -w
