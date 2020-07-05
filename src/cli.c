@@ -131,7 +131,6 @@ int main( int ac, char * av[] )
 		gchar ** oname;
 		gchar *  otype;
 		gchar *  tmpj[3];
-		size_t   i;
 
 		eg_demangle(
 			in, (const char ***)&oname, (const char **)&otype );
@@ -149,7 +148,6 @@ int main( int ac, char * av[] )
 	{
 		gchar ** otmp;
 		gchar ** otmp2;
-		size_t   i;
 
 		RET_IF( !g_strrstr( (const gchar *)in, "." ) );
 		otmp  = g_strsplit( in, ".", 2 );
