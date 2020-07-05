@@ -148,7 +148,7 @@ LDFLAGS += -fprofile-arcs -ftest-coverage
 else ifeq ($(strip $(TC)),xcode)
 LDFLAGS += -fprofile-arcs -ftest-coverage
 else
-LDFLAGS += -fprofile-instr-generate -fcoverage-mapping
+LDFLAGS += -Wl,-fprofile-instr-generate -Wl,-fcoverage-mapping
 endif
 
 ## Resolve the correct host-target suffixes
