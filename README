@@ -3,6 +3,9 @@
 mangledeggs
 A symbol mangling regime for the Fanhacker’s Toolkit
 
+CLI version 1.0.0 (symver)
+Library version 1.0.0 (semver)
+
 Copyright © 2020 Alexander Nicholi
 Released under BSD-2-Clause.
 
