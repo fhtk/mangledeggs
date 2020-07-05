@@ -10,31 +10,37 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define RET_IF(x) do{if((x)){return;}}while(0)
+#define RET_IF( x ) \
+	do \
+	{ \
+		if( ( x ) ) \
+		{ \
+			return; \
+		} \
+	} while( 0 )
 
-void eg_mangle( const char** name, const char* type,
-const char** out )
+void eg_mangle( const char ** name, const char * type, const char ** out )
 {
 	size_t o_sz, o_cap, type_sz, i;
-	char* o;
+	char * o;
 
-	RET_IF(name == NULL || type == NULL || out == NULL);
+	RET_IF( name == NULL || type == NULL || out == NULL );
 
 	/* 2 for ‘eg’, 1 for name-type separator */
-	o_sz = 2;
+	o_sz  = 2;
 	o_cap = 4;
 
-	o = malloc( sizeof(char) * 4 );
+	o = malloc( sizeof( char ) * 4 );
 	RET_IF( o == NULL );
 
 	o[0] = 'e';
 	o[1] = 'g';
 
-	for(i = 0; name[i] != NULL; ++i)
+	for( i = 0; name[i] != NULL; ++i )
 	{
 		size_t item_sz;
 
-		if(name[i] == NULL)
+		if( name[i] == NULL )
 		{
 			break;
 		}
@@ -52,7 +58,7 @@ const char** out )
 		memcpy( o + o_sz, name[i], item_sz );
 
 		/* capitalise the lowercase leading letter, if present */
-		if( i > 0 && (o[o_sz] >= 0x61 && o[o_sz] <= 0x7A) )
+		if( i > 0 && ( o[o_sz] >= 0x61 && o[o_sz] <= 0x7A ) )
 		{
 			o[o_sz] -= 0x20;
 		}
@@ -80,5 +86,5 @@ const char** out )
 
 	o_sz += type_sz + 1;
 
-	*out = (const char*)o;
+	*out = (const char *)o;
 }
