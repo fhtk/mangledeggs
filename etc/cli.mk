@@ -5,7 +5,7 @@
 ##                       Released under BSD-2-Clause.                       ##
 ##############################################################################
 
-include base.mk
+include etc/base.mk
 
 # name of project. used in output binary naming
 PROJECT := mangledeggs
@@ -17,9 +17,9 @@ AFILE   :=
 
 # space-separated path list for #includes
 # <system> includes
-INCLUDES := ../include
+INCLUDES := include
 # "local" includes
-INCLUDEL := ../src
+INCLUDEL := src
 
 # space-separated library name list
 LIBS      :=
@@ -36,11 +36,11 @@ FWORKS :=
 
 # sources
 CFILES   := \
-	../src/cli.c \
-	../src/demangle.c \
-	../src/mangle.c
+	src/cli.c \
+	src/demangle.c \
+	src/mangle.c
 HFILES   := \
-	../include/mangledeggs.h
+	include/mangledeggs.h
 CPPFILES :=
 HPPFILES :=
 
