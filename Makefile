@@ -5,12 +5,4 @@
 ##                       Released under BSD-2-Clause.                       ##
 ##############################################################################
 
-.PHONY: default cli lib
-
-default: cli
-
-cli: lib
-	$(MAKE) -f etc/cli.mk -C etc
-
-lib:
-	$(MAKE) -f etc/lib.mk -C etc
+$(info This is a dummy makefile. Please use ‘make -f etc/lib.mk’ and ‘make -f etc/cli.mk’ to build the library and the CLI, respectively.)
