@@ -5,12 +5,12 @@
 ##                       Released under BSD-2-Clause.                       ##
 ##############################################################################
 
-include etc/base.mk
+include $(AQ)/lib/slick/base.mk
 
 PROJECT := mangledeggs
 
 # put a ‘1’ for the desired target types to compile
-SOFILE := 1
+SOFILE :=
 AFILE  := 1
 
 # space-separated path list for #includes
@@ -20,8 +20,8 @@ INCLUDES := include
 INCLUDEL := src
 
 # space-separated library name list
-LIBS      :=
-LIBDIRS   :=
+LIBS    :=
+LIBDIRS :=
 
 # frameworks (macOS target only)
 FWORKS :=
@@ -33,19 +33,19 @@ FWORKS :=
 3PLIBS   :=
 
 # sources
-CFILES   := \
+CFILES    := \
 	src/demangle.c \
 	src/mangle.c
-HFILES   := \
+CPPFILES  :=
+PUBHFILES := \
 	include/mangledeggs.h
-CPPFILES :=
-HPPFILES :=
+PRVHFILES :=
 
 # test suite sources
-TES_CFILES   :=
-TES_HFILES   :=
-TES_CPPFILES :=
-TES_HPPFILES :=
+TES_CFILES    :=
+TES_CPPFILES  :=
+TES_PUBHFILES :=
+TES_PRVHFILES :=
 
 # this defines all our usual targets
-include etc/targets.mk
+include $(AQ)/lib/slick/targets.mk

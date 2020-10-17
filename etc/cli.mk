@@ -5,7 +5,7 @@
 ##                       Released under BSD-2-Clause.                       ##
 ##############################################################################
 
-include etc/base.mk
+include $(AQ)/lib/slick/base.mk
 
 # name of project. used in output binary naming
 PROJECT := mangledeggs
@@ -35,23 +35,23 @@ LIBDIRS   := $(TROOT)/lib
 FWORKS :=
 
 # sources
-CFILES   := \
+CFILES    := \
 	src/cli.c \
 	src/demangle.c \
 	src/mangle.c
-HFILES   := \
+CPPFILES  :=
+PUBHFILES := \
 	include/mangledeggs.h
-CPPFILES :=
-HPPFILES :=
+PRVHFILES :=
 
 # test suite sources
-TES_CFILES   :=
-TES_HFILES   :=
-TES_CPPFILES :=
-TES_HPPFILES :=
+TES_CFILES    :=
+TES_HFILES :=
+TES_CPPFILES  :=
+TES_HFILES :=
 
 # force C++ linker because of 3rd-party library
 CCLD := $(CXX)
 
 # this defines all our usual targets
-include etc/targets.mk
+include $(AQ)/lib/slick/targets.mk
